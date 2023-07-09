@@ -1,0 +1,41 @@
+.tasks-table {
+    margin-top: 10px;
+  }
+  .status-pending {
+    color: rgb(255, 34, 0);
+    margin-top: 0px;
+  }
+  
+  .status-review {
+    color: rgb(235, 43, 241);
+    margin-top: 0px;
+  }
+  
+  .status-completed {
+    color: green;
+    display: flex;
+    margin-top: 0px;
+  }
+    
+  .button{
+    margin:  10px;
+  }
+
+  .button1{
+    margin: 5px 5px;
+    
+    height: 25px;
+    padding: auto;
+  }
+
+  span{
+    font-size: 15px;
+    margin-top: -7px;
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  .trash{
+    margin-top: -3px;
+  }
