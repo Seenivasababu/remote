@@ -145,9 +145,9 @@ const TaskManagement = () => {
         </Form.Group>
 
         <Form.Group controlId="taskDueDate">
-          <Form.Label>Due Date:</Form.Label>
+          <Form.Label>Time required:</Form.Label>
           <Form.Control
-            type="date"
+            type="time"
             value={taskDueDate}
             onChange={handleTaskDueDateChange}
           />
@@ -195,7 +195,7 @@ const TaskManagement = () => {
           Sort by Priority
         </Button>
         <Button  className='button' variant="primary" onClick={() => handleSort('dueDate')}>
-          Sort by Due Date
+          Sort by Time required
         </Button>
         <Button  className='button' variant="primary" onClick={() => setIsVisible(true)}>
           Add Task
@@ -211,7 +211,7 @@ const TaskManagement = () => {
             <tr>
               <th>Name</th>
               <th>Priority</th>
-              <th>Due Date</th>
+              <th>Time required</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
