@@ -13,7 +13,9 @@ const TaskManagement = () => {
   const [sortColumn, setSortColumn] = useState(null);
   const [filterStatus, setFilterStatus] = useState('');
   const [isVisible, setIsVisible] = useState(false);
-  const [isActionVisible, setIsActionVisible] = useState(false);
+  const [isActionVisible, setIsActionVisible] = useState([]);
+
+
 
   useEffect(() => {
     // Retrieve tasks from local storage if available
@@ -26,6 +28,7 @@ const TaskManagement = () => {
   useEffect(() => {
     // Save tasks to local storage whenever tasks state changes
     localStorage.setItem('tasks', JSON.stringify(tasks));
+    setIsActionVisible(new Array(tasks.length).fill(false));
   }, [tasks]);
   
 
@@ -116,6 +119,14 @@ const TaskManagement = () => {
     });
   }
 
+  const toggleActionVisible = (index) => {
+    setIsActionVisible((prev) => {
+      const updatedIsActionVisible = [...prev];
+      updatedIsActionVisible[index] = !updatedIsActionVisible[index];
+      return updatedIsActionVisible;
+    });
+  };
+
   return (
     <div>
       <h2>Task Management</h2>
@@ -147,7 +158,7 @@ const TaskManagement = () => {
         <Form.Group controlId="taskDueDate">
           <Form.Label>Time required:</Form.Label>
           <Form.Control
-            type="time"
+            type="text"
             value={taskDueDate}
             onChange={handleTaskDueDateChange}
           />
@@ -217,7 +228,7 @@ const TaskManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredTasks.map((task) => (
+            {filteredTasks.map((task,index) => (
               <tr key={task.id}>
                
                 <td>{task.name}</td>
@@ -232,10 +243,10 @@ const TaskManagement = () => {
                     
                 <Button className='button1'
                     variant="primary"
-                    onClick={() => setIsActionVisible(!isActionVisible)}>
+                    onClick={() => toggleActionVisible(index)}>
                     <span>Update</span>
                   </Button>
-                  {isActionVisible && ( <><Button className='button1'
+                  {isActionVisible[index] && ( <><Button className='button1'
                     variant="danger"
                     onClick={() => handleTaskDelete(task.id)}
                   >
